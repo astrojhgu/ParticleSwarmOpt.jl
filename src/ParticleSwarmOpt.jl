@@ -15,8 +15,8 @@ end
 
 zeros_like(v::Array) = zeros(eltype(v), size(v)...)
 
-function Particle(f::Function, position::V)::Particle{V} where {V}
-    Particle(position, zeros_like(position), f(position), missing)
+function Particle(func::Function, position::V)::Particle{V} where {V}
+    Particle(position, zeros_like(position), func(position), missing)
 end
 
 
