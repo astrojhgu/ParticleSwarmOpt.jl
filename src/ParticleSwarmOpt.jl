@@ -82,7 +82,7 @@ function converged_dfit(psm::ParticleSwarmMaximizer{V}, p, m)::Bool where {V}
     if ismissing(psm.gbest)
         false
     else
-        best_sort = sort(map(p->p.fitness, psm.swarm); lt = !isless)
+        best_sort = sort(map(p->p.fitness, psm.swarm); lt = (x,y)->(x>y))
         i1 = Int(floor(psm.particle_count*p))
         best_mean = sum(best_sort[2:i1]) / (i1 - 1)
         abs(psm.gbest.fitness - best_mean) < m
